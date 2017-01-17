@@ -7,9 +7,9 @@ USER root
 RUN usermod -G users jenkins
 
 RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
-	&& tar xzf https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
-	&& rm https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
-	&& chmod +x ./kubernetes/client/binkubectl \
+	&& tar xzf kubernetes-client-linux-amd64.tar.gz \
+	&& rm kubernetes-client-linux-amd64.tar.gz \
+	&& chmod +x ./kubernetes/client/bin/kubectl \
 	&& mv ./kubernetes/client/bin/kubectl /usr/local/bin/kubectl \
 	&& rm -Rf ./kubernetes
 
