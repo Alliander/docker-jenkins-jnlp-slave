@@ -1,4 +1,4 @@
-FROM jenkinsci/docker-jnlp-slave:2.62
+FROM jenkinsci/jnlp-slave:2.62
 
 ARG KUBECTL_VERSION=v1.5.2
 
