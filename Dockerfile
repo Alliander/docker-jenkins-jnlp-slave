@@ -4,7 +4,7 @@ ARG KUBECTL_VERSION=v1.5.2
 
 USER root
 
-RUN usermod -G users jenkins
+RUN usermod -aG root jenkins
 
 RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
 	&& tar xzf kubernetes-client-linux-amd64.tar.gz \
