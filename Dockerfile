@@ -12,8 +12,3 @@ RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.
 	&& chmod +x ./kubernetes/client/bin/kubectl \
 	&& mv ./kubernetes/client/bin/kubectl /usr/local/bin/kubectl \
 	&& rm -Rf ./kubernetes
-
-COPY COMODORSACertificationAuthority.crt /usr/local/share/ca-certificates/
-COPY COMODORSADomainValidationSecureServerCA.crt /usr/local/share/ca-certificates/
-
-RUN update-ca-certificates
