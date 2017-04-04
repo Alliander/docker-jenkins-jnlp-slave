@@ -1,6 +1,7 @@
 FROM jenkinsci/jnlp-slave:2.62
 
 ARG KUBECTL_VERSION=v1.5.2
+ARG HELM_VERSION=v2.2.2
 
 USER root
 
@@ -12,3 +13,9 @@ RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.
 	&& chmod +x ./kubernetes/client/bin/kubectl \
 	&& mv ./kubernetes/client/bin/kubectl /usr/local/bin/kubectl \
 	&& rm -Rf ./kubernetes
+
+RUN curl -LO https://kubernetes-helm.storage.googleapis.com/helm-${HELM_VERSION}-linux-amd64.tar.gz \
+	&& tar xzf helm-${HELM_VERSION}-linux-amd64.tar.gz \
+	&& rm helm-${HELM_VERSION}-linux-amd64.tar.gz \
+	&& mv ./linux-amd64/helm /usr/local/bin/helm \
+	&& rm -Rf ./linux-amd64
