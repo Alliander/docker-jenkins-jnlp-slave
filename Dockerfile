@@ -1,11 +1,12 @@
-FROM jenkinsci/jnlp-slave:2.62
+FROM jenkinsci/jnlp-slave:3.7-1
 
-ARG KUBECTL_VERSION=v1.5.6
-ARG HELM_VERSION=v2.3.0
+ARG KUBECTL_VERSION=v1.7.0
+ARG HELM_VERSION=v2.5.0
 
 USER root
 
-RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++
+RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip
+RUN pip install awscli --upgrade --user 
 
 RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
 	&& tar xzf kubernetes-client-linux-amd64.tar.gz \
