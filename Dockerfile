@@ -5,7 +5,7 @@ ARG HELM_VERSION=v2.5.0
 
 USER root
 
-RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip
+RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip libyaml-dev
 RUN pip install awscli --upgrade --user 
 
 RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
