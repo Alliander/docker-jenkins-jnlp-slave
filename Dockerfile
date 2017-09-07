@@ -1,4 +1,4 @@
-FROM jenkinsci/jnlp-slave:3.7-1
+FROM jenkinsci/jnlp-slave:3.10-1
 
 ARG KUBECTL_VERSION=v1.7.0
 ARG HELM_VERSION=v2.5.0
