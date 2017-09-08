@@ -2,6 +2,7 @@ FROM jenkinsci/jnlp-slave:3.10-1
 
 ARG KUBECTL_VERSION=v1.7.0
 ARG HELM_VERSION=v2.5.0
+ARG PROMETHEUS_VERSION=1.7.1
 
 USER root
 
@@ -20,3 +21,10 @@ RUN curl -LO https://kubernetes-helm.storage.googleapis.com/helm-${HELM_VERSION}
 	&& rm helm-${HELM_VERSION}-linux-amd64.tar.gz \
 	&& mv ./linux-amd64/helm /usr/local/bin/helm \
 	&& rm -Rf ./linux-amd64
+
+# Add promtool (for verifying prometheus rules)
+RUN curl -LO https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz \
+    && tar xzf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz \
+    && mv ./prometheus-${PROMETHEUS_VERSION}.linux-amd64/promtool /usr/local/bin/promtool \
+	&& chmod +x /usr/local/bin/promtool \
+    && rm -Rf ./prometheus-${PROMETHEUS_VERSION}.linux-amd64
