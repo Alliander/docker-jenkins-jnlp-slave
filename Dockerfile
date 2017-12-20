@@ -6,7 +6,7 @@ ARG PROMETHEUS_VERSION=1.7.1
 
 USER root
 
-RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv
+RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv python-nose
 RUN pip install awscli
 
 RUN curl -LO https://dl.k8s.io/${KUBECTL_VERSION}/kubernetes-client-linux-amd64.tar.gz \
