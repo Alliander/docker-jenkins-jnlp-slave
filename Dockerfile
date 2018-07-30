@@ -3,6 +3,7 @@ FROM jenkins/jnlp-slave:3.19-1
 ARG KUBECTL_VERSION=v1.11.0
 ARG HELM_VERSION=v2.9.1
 ARG PROMETHEUS_VERSION=2.3.2
+ARG LEIN_VERSION=2.8.1
 
 USER root
 
@@ -25,3 +26,9 @@ RUN curl -LO https://github.com/prometheus/prometheus/releases/download/v${PROME
   && mv ./prometheus-${PROMETHEUS_VERSION}.linux-amd64/promtool /usr/local/bin/promtool \
 	&& chmod +x /usr/local/bin/promtool \
   && rm -Rf ./prometheus-${PROMETHEUS_VERSION}.linux-amd64
+
+# Add leiningen (for Clojure development)
+RUN curl -LO https://raw.githubusercontent.com/technomancy/leiningen/${LEIN_VERSION}/bin/lein \
+  && mv ./lein /usr/local/bin/lein \
+  && chmod a+x /usr/local/bin/lein \
+  && lein version
