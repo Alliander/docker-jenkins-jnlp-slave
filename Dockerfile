@@ -7,7 +7,7 @@ ARG LEIN_VERSION=2.8.1
 
 USER root
 
-RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv python3 libpython3-dev python3-nose
+RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv python3 libpython3-dev python3-nose mysql-client
 RUN pip install awscli
 
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
