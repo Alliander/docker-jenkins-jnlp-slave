@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave:3.27-1
+FROM jenkins/jnlp-slave:latest-jdk11
 
 ARG KUBECTL_VERSION=v1.12.6
 ARG HELM_VERSION=v2.12.2
