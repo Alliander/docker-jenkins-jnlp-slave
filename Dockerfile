@@ -43,6 +43,7 @@ RUN apt-get update && apt-get install -y make build-essential libssl-dev zlib1g-
 
 # Python 3.6
 RUN wget https://www.python.org/ftp/python/${PYTHON_3_6_VERSION}/Python-${PYTHON_3_6_VERSION}.tgz \
+  && tar xvf ${PYTHON_3_6_VERSION}.tgz \
   && cd Python-${PYTHON_3_6_VERSION} \
   && ./configure --enable-optimizations --enabled-shared --with-ensurepip=install \
   && make -j8 \
@@ -51,6 +52,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_6_VERSION}/Python-${PYTHON
 
 # Python 3.7
 RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON_3_7_VERSION}.tgz \
+  && tar xvf ${PYTHON_3_7_VERSION}.tgz \
   && cd Python-${PYTHON_3_7_VERSION} \
   && ./configure --enable-optimizations --enabled-shared --with-ensurepip=install \
   && make -j8 \
@@ -59,6 +61,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON
 
 # Python 3.8
 RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_VERSION}/Python-${PYTHON_3_8_VERSION}.tgz \
+  && tar xvf ${PYTHON_3_8_VERSION}.tgz \
   && cd Python-${PYTHON_3_8_VERSION} \
   && ./configure --enable-optimizations --enabled-shared --with-ensurepip=install \
   && make -j8 \
