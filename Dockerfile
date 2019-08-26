@@ -48,7 +48,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_6_VERSION}/Python-${PYTHON
   && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
   && make -j8 \
   && make altinstall \
-  && ldconfig
+  && ldconfig \
+  && cd -
 
 # Python 3.7
 RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON_3_7_VERSION}.tgz \
@@ -57,7 +58,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON
   && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
   && make -j8 \
   && make altinstall \
-  && ldconfig
+  && ldconfig \
+  && cd -
 
 # Python 3.8
 RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_VERSION}/Python-${PYTHON_3_8_VERSION}.tgz \
@@ -66,7 +68,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_VERSION}/Python-${PYTHON
   && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
   && make -j8 \
   && make altinstall \
-  && ldconfig
+  && ldconfig \
+  && cd -
 
 # Set default Python to Python 3.5
 RUN update-alternatives --install /usr/bin/python3 python3 `which python3.5` 80 \
