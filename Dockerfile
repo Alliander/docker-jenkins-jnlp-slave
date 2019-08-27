@@ -6,7 +6,8 @@ ARG PROMETHEUS_VERSION=2.3.2
 ARG LEIN_VERSION=2.8.1
 ARG PYTHON_3_6_VERSION=3.6.9
 ARG PYTHON_3_7_VERSION=3.7.4
-ARG PYTHON_3_8_VERSION=3.8.0
+ARG PYTHON_3_8_DIR_VERSION=3.8.0
+ARG PYTHON_3_8_TAR_VERSION=3.8.0b3
 
 USER root
 
@@ -63,8 +64,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON
   && cd -
 
 # Python 3.8
-RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_VERSION}/Python-${PYTHON_3_8_VERSION}.tgz \
-  && tar xvf Python-${PYTHON_3_8_VERSION}.tgz \
+RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_DIR_VERSION}/Python-${PYTHON_3_8_TAR_VERSION}.tgz \
+  && tar xvf Python-${PYTHON_3_8_TAR_VERSION}.tgz \
   && cd Python-${PYTHON_3_8_VERSION} \
   # && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
   && ./configure --enable-shared --with-ensurepip=install \
