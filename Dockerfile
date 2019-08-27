@@ -66,7 +66,7 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON
 # Python 3.8
 RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_DIR_VERSION}/Python-${PYTHON_3_8_TAR_VERSION}.tgz \
   && tar xvf Python-${PYTHON_3_8_TAR_VERSION}.tgz \
-  && cd Python-${PYTHON_3_8_VERSION} \
+  && cd Python-${PYTHON_3_8_TAR_VERSION} \
   # && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
   && ./configure --enable-shared --with-ensurepip=install \
   && make -j8 \
