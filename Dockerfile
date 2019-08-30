@@ -4,6 +4,10 @@ ARG KUBECTL_VERSION=v1.12.9
 ARG HELM_VERSION=v2.14.1
 ARG PROMETHEUS_VERSION=2.3.2
 ARG LEIN_VERSION=2.8.1
+ARG PYTHON_3_6_VERSION=3.6.9
+ARG PYTHON_3_7_VERSION=3.7.4
+ARG PYTHON_3_8_DIR_VERSION=3.8.0
+ARG PYTHON_3_8_TAR_VERSION=3.8.0b3
 
 USER root
 
@@ -32,3 +36,58 @@ RUN curl -LO https://raw.githubusercontent.com/technomancy/leiningen/${LEIN_VERS
   && mv ./lein /usr/local/bin/lein \
   && chmod a+x /usr/local/bin/lein \
   && lein version
+
+# Add other Python versions next to the default python 3.5
+# https://unix.stackexchange.com/a/332658
+# Install build dependencies
+RUN apt-get update && apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
+
+# Python 3.6
+RUN wget https://www.python.org/ftp/python/${PYTHON_3_6_VERSION}/Python-${PYTHON_3_6_VERSION}.tgz \
+  && tar xvf Python-${PYTHON_3_6_VERSION}.tgz \
+  && cd Python-${PYTHON_3_6_VERSION} \
+  && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
+  && make -j8 \
+  && make altinstall \
+  && ldconfig \
+  && cd .. \
+  && rm -rf Python-${PYTHON_3_6_VERSION}
+
+# Python 3.7
+RUN wget https://www.python.org/ftp/python/${PYTHON_3_7_VERSION}/Python-${PYTHON_3_7_VERSION}.tgz \
+  && tar xvf Python-${PYTHON_3_7_VERSION}.tgz \
+  && cd Python-${PYTHON_3_7_VERSION} \
+  # && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
+  && ./configure --enable-shared --with-ensurepip=install \
+  && make -j8 \
+  && make altinstall \
+  && ldconfig \
+  && cd .. \
+  && rm -rf Python-${PYTHON_3_7_VERSION}
+
+# Python 3.8
+RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_DIR_VERSION}/Python-${PYTHON_3_8_TAR_VERSION}.tgz \
+  && tar xvf Python-${PYTHON_3_8_TAR_VERSION}.tgz \
+  && cd Python-${PYTHON_3_8_TAR_VERSION} \
+  # && ./configure --enable-optimizations --enable-shared --with-ensurepip=install \
+  && ./configure --enable-shared --with-ensurepip=install \
+  && make -j8 \
+  && make altinstall \
+  && ldconfig \
+  && cd .. \
+  && rm -rf Python-${PYTHON_3_8_TAR_VERSION}
+
+# Set default Python to Python 3.5
+RUN update-alternatives --install /usr/bin/python3 python3 `which python3.5` 80 \
+  && update-alternatives --install /usr/bin/python3 python3 `which python3.6` 70 \
+  && update-alternatives --install /usr/bin/python3 python3 `which python3.7` 60 \
+  && update-alternatives --install /usr/bin/python3 python3 `which python3.8` 50 \
+  && update-alternatives --display python3
+
+# Explicit whichlist for debugging
+RUN which python \
+  && which python3 \
+  && which python3.5 \
+  && which python3.6 \
+  && which python3.7 \
+  && which python3.8
