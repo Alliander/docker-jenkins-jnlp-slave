@@ -1,7 +1,9 @@
 def buildParameterMap = [:]
 buildParameterMap['appName'] = 'docker-jenkins-jnlp-slave'
-buildParameterMap['namespaces'] = []
-buildParameterMap['namespacesWithApproval'] = []
+buildParameterMap['buildStrategy'] = [
+ '*': [ 'checkout', 'build', 'containerize'
+ ]
+]
 
 buildAndDeployGeneric(buildParameterMap)
 
