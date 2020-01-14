@@ -13,4 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker-jenkins-jnlp-slave:$(date +%s)
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/alliander/docker-jenkins-jnlp-slave/$GITHUB_REF:$GITHUB_SHA
+    - name: Push the Docker image
+      run: docker.pkg.github.com/alliander/docker-jenkins-jnlp-slave/$GITHUB_REF:$GITHUB_SHA
