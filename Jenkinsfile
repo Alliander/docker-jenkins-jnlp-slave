@@ -1,4 +1,4 @@
-@Library('jenkins-workflow-libs@v2-forza')
+@Library('jenkins-workflow-libs@v2-generic')
 def buildParameterMap = [:]
 buildParameterMap['appName'] = 'docker-jenkins-jnlp-slave'
 buildParameterMap['jenkinsNodeLabel'] = 'jenkins-nb-forza-ops-jenkins-slave'
