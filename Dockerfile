@@ -10,7 +10,7 @@ ARG PYTHON_3_8_DIR_VERSION=3.8.0
 ARG PYTHON_3_8_TAR_VERSION=3.8.0b3
 
 USER root
-RUN echo "deb http://ftp.nl.debian.org/debian/ squeeze main\ndeb http://security.debian.org/ squeeze/updates main\ndeb http://ftp.nl.debian.org/debian/ squeeze-updates main" > /etc/apt/sources.list.d/debian-nl.list
+RUN echo "deb http://ftp.nl.debian.org/debian/ buster main\ndeb http://security.debian.org/ buster/updates main\ndeb http://ftp.nl.debian.org/debian/ buster-updates main" > /etc/apt/sources.list.d/debian-nl.list
 RUN rm -rf /var/lib/apt/lists/* && apt update
 RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip python3-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv python3 python3 python3-venv libpython3-dev python3-nose mysql-client flake8
 RUN pip install awscli
