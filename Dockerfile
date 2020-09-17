@@ -10,6 +10,7 @@ ARG PYTHON_3_8_DIR_VERSION=3.8.0
 ARG PYTHON_3_8_TAR_VERSION=3.8.0b3
 
 USER root
+RUN apt-add-repository 'deb http://ftp.us.debian.org/debian stretch main contrib non-free'
 RUN rm -rf /var/lib/apt/lists/* && apt update
 RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip python3-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv python3 python3 python3-venv libpython3-dev python3-nose mysql-client flake8
 RUN pip install awscli
