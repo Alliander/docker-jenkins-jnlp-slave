@@ -18,7 +18,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL
 	&& chmod +x ./kubectl \
 	&& mv ./kubectl /usr/local/bin/kubectl
 
-RUN curl -LO https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
+RUN curl -LO https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz \
 	&& tar xzf helm-${HELM_VERSION}-linux-amd64.tar.gz \
 	&& rm helm-${HELM_VERSION}-linux-amd64.tar.gz \
 	&& mv ./linux-amd64/helm /usr/local/bin/helm \
