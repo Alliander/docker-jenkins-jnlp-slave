@@ -4,8 +4,6 @@ ARG KUBECTL_VERSION=v1.17.3
 ARG HELM_VERSION=v3.3.4
 ARG PROMETHEUS_VERSION=2.3.2
 ARG LEIN_VERSION=2.8.1
-ARG PYTHON_3_6_VERSION=3.6.9
-ARG PYTHON_3_7_VERSION=3.7.4
 ARG PYTHON_3_8_DIR_VERSION=3.8.0
 ARG PYTHON_3_8_TAR_VERSION=3.8.0b3
 
@@ -56,16 +54,11 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_DIR_VERSION}/Python-${PY
   && rm -rf Python-${PYTHON_3_8_TAR_VERSION}
 
 # Set default Python to Python 3.5
-RUN update-alternatives --install /usr/bin/python3 python3 `which python3.5` 80 \
-  && update-alternatives --install /usr/bin/python3 python3 `which python3.6` 70 \
-  && update-alternatives --install /usr/bin/python3 python3 `which python3.7` 60 \
+RUN update-alternatives --install /usr/bin/python3 python3 `which python3.7` 60 \
   && update-alternatives --install /usr/bin/python3 python3 `which python3.8` 50 \
   && update-alternatives --display python3
 
 # Explicit whichlist for debugging
 RUN which python \
   && which python3 \
-  && which python3.5 \
-  && which python3.6 \
-  && which python3.7 \
   && which python3.8
