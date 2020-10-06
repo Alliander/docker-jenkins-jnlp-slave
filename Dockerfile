@@ -53,9 +53,8 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_DIR_VERSION}/Python-${PY
   && cd .. \
   && rm -rf Python-${PYTHON_3_8_TAR_VERSION}
 
-# Set default Python to Python 3.5
-RUN update-alternatives --install /usr/bin/python3 python3 `which python3.7` 60 \
-  && update-alternatives --install /usr/bin/python3 python3 `which python3.8` 50 \
+# Set default Python to Python 3.8
+RUN update-alternatives && update-alternatives --install /usr/bin/python3 python3 `which python3.8` 50 \
   && update-alternatives --display python3
 
 # Explicit whichlist for debugging
