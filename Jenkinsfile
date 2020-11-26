@@ -1,11 +1,8 @@
-@Library('jenkins-workflow-libs@v2-generic')
+@Library('jenkins-workflow-libs@v3-happy-flow')
 def buildParameterMap = [:]
 buildParameterMap['appName'] = 'docker-jenkins-jnlp-slave'
-buildParameterMap['jenkinsNodeLabel'] = 'jenkins-nb-forza-ops-jenkins-slave'
-buildParameterMap['buildStrategy'] = [
- '*': [ 'checkout', 'build', 'containerize'
- ]
-]
+buildParameterMap['language'] = 'docker'	
+buildParameterMap['appType'] = 'docker-base'
 
 buildAndDeployGeneric(buildParameterMap)
 

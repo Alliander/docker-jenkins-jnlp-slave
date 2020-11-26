@@ -57,6 +57,10 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_3_8_DIR_VERSION}/Python-${PY
 RUN update-alternatives --install /usr/bin/python3 python3 `which python3.8` 50 \
   && update-alternatives --display python3
 
+# Install Robot Framework
+COPY tools/robotframework-req.txt . 
+RUN /usr/bin/python3 -m pip install --no-cache-dir -r robotframework-req.txt
+
 # Explicit whichlist for debugging
 RUN which python \
   && which python3 \
