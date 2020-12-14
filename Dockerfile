@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave:3.40-1-jdk11
+FROM jenkins/inbound-agent:4.6-1-jdk11
 
 ARG KUBECTL_VERSION=v1.17.3
 ARG HELM_VERSION=v2.14.1
