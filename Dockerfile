@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:4.6-1-jdk11
+FROM jenkins/jnlp-slave:3.40-1-jdk11
 
 ARG KUBECTL_VERSION=v1.17.3
 ARG HELM_VERSION=v2.14.1
@@ -10,6 +10,12 @@ ARG PYTHON_3_8_DIR_VERSION=3.8.0
 ARG PYTHON_3_8_TAR_VERSION=3.8.0b3
 
 USER root
+
+RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk && \
+wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-bin-2.32-r0.apk && \
+wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-i18n-2.32-r0.apk && \
+apk add glibc-bin-2.32-r0.apk glibc-i18n-2.32-r0.apk glibc-2.32-r0.apk
+
 RUN echo "deb http://cdn-aws.deb.debian.org/debian stable main\ndeb http://cdn-aws.deb.debian.org/debian-security stable/updates main" > /etc/apt/sources.list.d/debian-aws.list
 RUN rm -rf /var/lib/apt/lists/* && apt update
 RUN apt-get update && apt-get install -y make && apt-get install -y build-essential g++ python-pip python3-pip jq libyaml-dev libpython2.7-dev libpython-dev python-virtualenv python3 python3 python3-venv libpython3-dev python3-nose mysql-client flake8
